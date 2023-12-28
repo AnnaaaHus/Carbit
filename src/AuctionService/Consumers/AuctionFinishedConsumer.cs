@@ -23,11 +23,11 @@ public class AuctionFinishedConsumer : IConsumer<AuctionFinished>
         if (context.Message.ItemSold)
         {
             auction.Winner = context.Message.Winner;
-            auction.SoldAmount = context.Message.Amount;
+            auction.SoldAmound = context.Message.Amount;
            
         }
 
-        auction.Status = auction.SoldAmount > auction.ReservePrice
+        auction.Status = auction.SoldAmound > auction.ReservePrice
             ? Status.Finished : Status.ReserveNotMet;
 
         await _dbContext.SaveChangesAsync();
